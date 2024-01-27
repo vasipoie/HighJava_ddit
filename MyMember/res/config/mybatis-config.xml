@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<properties resource = "db.properties" />
+	
+	
+	<settings>
+  		<setting name="logImpl" value="LOG4J2"/> <!-- Log4j2 사용 설정 -->
+        <setting name="useGeneratedKeys" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+<!-- 	<settings> -->
+		
+		
+<!-- 		데이터 등록시 속성값이 존재하지 않으면 (즉, NULL)  -->
+<!-- 		부적합한 열유형 1111 예외 발생함. 이 경우 해당타입을 명시적으로 알려주던지 -->
+<!-- 		아래와 같이 NULL인 속성에 대하여 특정값으로 자동 설정이 가능함. -->
+<!-- 		 -->
+		
+		
+		<!-- DB 컬럼명을 낙타표기법으로 속성명과 자동 매핑 설정하기 -->
+
+	
+	
+<!-- 	<typeHandlers> -->
+<!-- 		<typeHandler javaType="java.math.BigDecimal" handler="org.apache.ibatis.type.BigDecimalTypeHandler"/> -->
+<!-- 	</typeHandlers> -->
+
+	
+	
+
+
+	<environments default="dev">
+	
+		<environment id="dev">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+				<property name="poolMaximumActiveConnections" value="2"/> <!-- 활성화된 최대 커넥션수 -->
+				<property name="poolMaximumIdleConnections" value="2"/> <!-- 유휴상태에서 최대 커넥션수 -->
+				
+			</dataSource>
+		</environment>
+		
+	</environments>
+	
+	<mappers>
+		<mapper resource="mappers/mymember.xml"/>
+	</mappers>
+	
+
+	
+	
+</configuration>

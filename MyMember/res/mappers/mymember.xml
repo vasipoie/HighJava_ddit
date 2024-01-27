@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mymember">
+
+	<select id="selectAll" resultType="vo.MyMemberVO">
+
+		select mem_id as memId
+			, mem_pass as memPass
+       		, mem_name as memName
+     		, mem_tel as memTel
+       		, mem_addr as memAddr
+        from mymember
+
+	</select>
+
+
+
+
+
+
+
+</mapper>
