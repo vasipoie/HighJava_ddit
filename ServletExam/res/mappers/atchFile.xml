@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atchFile">
+
+	<insert id="insertAtchFile" parameterType="kr.or.ddit.comm.vo.AtchFileVo">
+		
+		<selectKey keyProperty="atchFileId" resultType="long" order="BEFORE">
+			select atch_file_seq.nextval from dual
+		</selectKey>
+		
+		insert into atch_file
+		(
+		ATCH_FILE_ID
+		, CREAT_DT
+		, USE_AT
+		)
+		values
+		(
+		#{atchFileId}
+		, sysdate
+		, 'Y'
+		)
+		
+		
+	</insert>
+	
+	<insert id="insertAtchFileDetail">
+		
+	   insert into atch_file_detail
+	   (
+	    ATCH_FILE_ID
+	   ,FILE_SN
+	   ,FILE_STRE_COURS
+	   ,STRE_FILE_NM
+	   ,ORIGNL_FILE_NM
+	   ,FILE_EXTSN
+	   ,FILE_CN
+	   ,FILE_SIZE
+	   )
+	   values
+	   (
+	    #{atchFileId}
+	   ,(select nvl(max(file_sn),0) + 1 from atch_file_detail
+	     where atch_file_id = #{atchFileId})
+	   ,#{fileStreCours}
+	   ,#{streFileNm}
+	   ,#{orignlFileNm}
+	   ,#{fileExtsn}
+	   ,#{fileCn}
+	   ,#{fileSize}
+	   )
+	
+	</insert>
+	
+	<resultMap type="AtchFileVo" id="atchFileMap">
+		<id column = "ATCH_FILE_ID" property = "atchFileId"/>
+		<id column = "FILE_SN" property = "fileSn"/>
+		<result column = "FILE_STRE_COURS" property = "fileStreCours"/>
+		<result column = "STRE_FILE_NM" property = "streFileNm"/>
+		<result column = "ORIGNL_FILE_NM" property = "orignlFileNm"/>
+		<result column = "FILE_EXTSN" property = "fileExtsn"/>
+		<result column = "FILE_CN" property = "fileCn"/>
+		<result column = "FILE_SIZE" property = "fileSize"/>
+	</resultMap>
+	
+	<select id="getAtchFileList" resultMap="atchFileMap">
+		select * from atch_file_detail
+		where atch_file_id = #{atchFileId}
+	</select>
+
+	<select id="getAtchFileDetail" resultMap="atchFileMap">
+		select * from atch_file_detail
+		where atch_file_id = #{atchFileId}
+			and file_sn = #{fileSn}
+	</select>
+</mapper>
