@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img {
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+}
+#parent {
+  font-size: 0;
+}
+</style>
+</head>
+<body>
+    <div id="parent">
+        <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA5MDZfMTI3/MDAxNTk5MzcxMjg1Nzg1.RhtuRlQ5YF-1tTteEXVgVGL6T1eAINMSSg6vfRrA17gg.OsF7VHneuLHpy4IyXRz-TsBndHcI3woUhXKca5U9c0Mg.JPEG.byby720/1599371287084.jpg?type=w800" alt="">
+        <img src="https://file.kinolights.com/original/post_detail/202309/08/4b00708d-c38d-47fb-b390-177ad1a339ae.png" alt="">
+        <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA0MTlfMjM3/MDAxNTg3MjU5Nzg2NDU0.ZgJpxgQP-eC-aoVpXzAZkwM6-T0vYYCl15M9_22MspAg.ZbGd_XNPy8DWQpxz8ueG8s0c4wry0wHQa6HhYhyyndog.JPEG.ssan_na/IMG_6273.JPG?type=w800" alt="">
+        <img src="https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202105/25/holapet/20210525044422431yyir.jpg" alt="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREwOPvZSsjTCISiM7tD8Gt-HZP7FhJ8bxAwh_MVoQvAUxykTwhFbp4YdjZnbYPfix_QOU&usqp=CAU" alt="">
+        <img src="https://mblogthumb-phinf.pstatic.net/MjAyMTA1MDJfMTQx/MDAxNjE5OTI5NTM1NzEz.rkV56f-1McVf_2cInuhoGE4pnY0rncRvsslHfP9rWGEg.EfmwW6tYpKEFSv5cFu5a1FJcxSe2oCjDL3cC0JX9b8kg.JPEG.sonss1997/IMG_2979.JPG?type=w800" alt="">
+        <img src="../image/아라베스크.gif" alt="">
+    </div>
+    <input type="button" id="left" value="&lt;&lt;">
+    <input type="button" id="stop" value="||">
+    <input type="button" id="right" value="&gt;&gt;">
+<script>
+    let v_parent = document.querySelector('#parent');
+
+    let timer;
+
+    //대리자 함수(proxy function)
+    // let v_flag = false; //상태변수
+    // function f_proxyLeft(){
+    //     if(!v_flag){
+    //         f_moveLeft();
+    //         v_flag = true;
+    //     }
+    // }
+
+    // document.querySelector('#left').onclick = f_proxyLeft;
+
+    // function f_moveLeft(){
+        
+    //     let firstChild = v_parent.firstElementChild;
+    //     v_parent.insertBefore(firstChild, null);
+    //     // timer = setTimeout(f_moveLeft,1000); //재귀호출
+    // };
+
+    // function f_proxyRight(){
+    //     if(!v_flag){
+    //         f_moveRight();
+    //         v_flag = true;
+    //     }
+    // }
+
+    // document.querySelector('#right').onclick = f_proxyRight;
+    
+    // function f_moveRight(){
+    //     let firstChild = v_parent.firstElementChild;
+    //     let lastChild = v_parent.lastElementChild;
+
+    //     v_parent.insertBefore(lastChild, firstChild);
+        
+    //     // timer = setTimeout(f_moveRight,1000);
+
+    // };
+
+    // document.querySelector('#stop').addEventListener('click',function(){
+    //     // clearTimeout(timer);
+    // });
+
+    //////////////////////////////////////////////////////////////////////////
+
+    document.querySelector('#left').onclick = function(){
+        
+        //첫번째 요소 얻기
+        // console.log(v_parent.childNodes[1]);
+        // console.log(v_parent.children[0]);
+        // console.log(v_parent.firstElementChild);
+        
+        let firstChild = v_parent.firstElementChild;
+
+        //마지막 위치로(append)이동
+        v_parent.appendChild(firstChild);
+    };
+
+document.querySelector('#right').onclick = function(){
+    // document.getElementById('right').onclick = function(){
+        
+        console.log(v_parent.lastElementChild);
+        
+        let firstChild = v_parent.firstElementChild;
+        let lastChild = v_parent.lastElementChild;
+
+        v_parent.insertBefore(lastChild, firstChild);
+
+        console.log(v_parent.childNodes[v_parent.childNodes.length-2]);
+        console.log(v_parent.children[v_parent.children.length-1]);
+        
+        
+        
+    };
+</script>
+</body>
+</html>
